@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/my_blog
+    username: root
+    password: Whz9@mkPg8
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

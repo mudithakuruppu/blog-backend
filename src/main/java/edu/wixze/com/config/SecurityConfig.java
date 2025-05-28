@@ -51,11 +51,15 @@ public class SecurityConfig {
                         // public endpoints
                         .requestMatchers(
                                 "/api/auth/login",
-                                "/api/auth/signup"
+                                "/api/auth/signup",
+                                "/uploads/**"
                         ).permitAll()
-                        // protect all /api/posts/all-posts (dashboard data) and maybe other post endpoints
+                        .requestMatchers("/api/categories/all").permitAll()
+                        .requestMatchers("/api/posts/upload-image").permitAll()
+                        .requestMatchers("/api/posts/get-post/**").permitAll()
+                        .requestMatchers("/api/posts/*").permitAll()
                         .requestMatchers("/api/posts/all-posts").authenticated()
-                        // optional: protect other API endpoints as needed
+                        .requestMatchers("/api/posts/update-post/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->

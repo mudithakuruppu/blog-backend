@@ -73,6 +73,14 @@ public class PostServiceImpl implements PostService {
                 .toList();
     }
 
+    @Override
+    public Post getPostById(Long id) {
+        return postRepository.findById(id)
+                .map(this::convertToDto)
+                .orElseThrow(
+                        () -> new RuntimeException("Post not found"));
+    }
+
 
     private Post convertToDto(PostEntity entity) {
         return Post.builder()
